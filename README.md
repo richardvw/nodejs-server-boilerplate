@@ -315,6 +315,25 @@ Accounts are the largest feature of the boilerplate. Instead of relying on a thi
 
 If you're used to using third-party or framework-level implementations for users, doing a custom implementation can seem scary. In the boilerplate, though, security of data was the primary concern, ensuring that user data is only accessible to who you intend.
 
+#### Authentication Token
+
+In order to handle encryption of your user's JWT tokens (the security mechanism used for handling the authentication of existing user sessions), the boilerplate relies on a unique hex string stored in the `settings-<env>.json` file at the root of this project (in the `authentication.token` field of that file).
+
+```
+// settings-development.json
+
+{
+  "authentication": {
+    "token": "abcdefghijklmnopqrstuvwxyz1234567890"
+  },
+  [...]
+}
+```
+
+While this can be anything you'd like, we recommend utilizing [CheatCode's Authentication Token Generator](https://api.cheatcode.co/tools/generate-authentcation-token) which will give you a secure token to use for this.
+
+> **Note**: This generator will only generate a token once and DOES NOT persist it anywhere. Make sure to back up the tokens you use in a password manager like 1Password, LastPass, or other encrypted secrets tool (Hashicorp Vault).
+
 #### Signup 
 
 User accounts are created using the following process:
@@ -434,7 +453,11 @@ You can customize your settings file however you'd like. If you change names or 
 
 ### FAQ
 
-_No FAQ items Yet_.
+**Does this boilerplate work with Windows?**
+
+It should. The [`cross-env` package](https://npmjs.com/package/cross-env) is used to run the NPM scripts necessary for running the dev server, creating builds, and running tests.
+
+If something you expect to be supported is not on your platform, please [file a bug report on the Github repo](https://github.com/cheatcode/nodejs-server-boilerplate/issues/new).
 
 ### Contributing
 
